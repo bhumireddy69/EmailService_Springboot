@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: Email Service
+  profiles:
+    active: dev  
+  main:
+    banner-mode: off
+server:  port: 8090
+form:
+  loc: C:/Users/Forms/
+
+#logging configuration
+logging:
+  level:
+    com.bhoomi: DEBUG
+    org.springframework: ERROR
+    org.hibernate.type.descriptor.sql.BasicBinder: ERROR 
+  file: logs\application.log
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
+    file: "%d %p %c{1.} [%t] %m%n"
+#logging configuration ended
+---
+
+#Spring configuration
+spring:
+  profiles: dev
+#Spring configuration ended
+#Mail props
+  mail:
+    host: gmail.smtp
+    port: 25
+    username: demo@demo.com
+    #properties.smtp.auth=true
+    #properties.smtp.starttls.enable=true
+#Mail Props end
+#Actuator Props
+management:  endpoints:    web:      exposure:        include: "*"
+  endpoint:
+    health:
+      show-details: always
+#Actuator Props end
+
+---
+
+#Spring configuration
+spring:  
+  profiles: test
+#Spring configuration ended
+
+---
+
+
+#Spring configuration
+spring:
+  
+  profiles: prod
+#Spring configuration ended
